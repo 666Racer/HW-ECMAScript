@@ -75,19 +75,23 @@ class Product {
 }
 
 class Order {
+    products = [];
     constructor(id) {
         this.id = id;
-        this.products = [];
+        // this.products = []; //ничего не передается - зачем тогда в конструктор
     }
     addProduct(product) {
         this.products.push(product);
     }
     getTotalPrice() {
-        let sum = 0;
-        this.products.forEach(element => {
-            sum += element.price * element.quantity;
-        });
-        return sum;
+        // let sum = 0;
+        // this.products.forEach(element => {
+        //     sum += element.price * element.quantity;
+        // }); //заменить на reduce!
+        // return sum;
+        return this.products.reduce((currentSum, product) =>
+            currentSum + product.price * product.quantity,
+        )
     }
 }
 
